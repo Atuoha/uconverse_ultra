@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:uconverse_ultra/generated/assets.dart';
 import 'package:uconverse_ultra/screens/splash_screen.dart';
 import '../constants/colors.dart';
 
@@ -33,7 +34,7 @@ class _EntryScreenState extends State<EntryScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset('assets/images/uconverse.png', width: 150),
+            Image.asset(Assets.imagesUconverse, width: 150),
             const SizedBox(height: 10),
             const Text(
               'Uconverse',
