@@ -12,11 +12,6 @@ class SplashPage extends GetView<SplashController> {
   Widget build(BuildContext context) {
     LiquidController liquidController = LiquidController();
 
-    SystemChrome.setSystemUIOverlayStyle(
-      const SystemUiOverlayStyle(
-        statusBarColor: Colors.transparent,
-      ),
-    );
     return Scaffold(
       body: Stack(
         children: [
