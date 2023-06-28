@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
-import '../constants/colors.dart';
+import 'package:get/get_state_manager/src/simple/get_view.dart';
 
-class SplashContainer extends StatelessWidget {
+import '../style/color.dart';
+import '../../pages/frames/splash/controller.dart';
+
+class SplashContainer extends GetView<SplashController> {
   final String title;
   final String subtitle;
   final String imageAsset;
@@ -29,7 +32,6 @@ class SplashContainer extends StatelessWidget {
         mainAxisSize: MainAxisSize.max,
         children: [
           Expanded(
-
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -55,7 +57,7 @@ class SplashContainer extends StatelessWidget {
                 isLast
                     ? ElevatedButton.icon(
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: primaryColor,
+                          backgroundColor: AppColor.primaryColor,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10),
                           ),
@@ -68,7 +70,8 @@ class SplashContainer extends StatelessWidget {
                           'Start exploring',
                           style: TextStyle(color: Colors.white),
                         ),
-                        onPressed: () {})
+                        onPressed: () => controller.launchApp(),
+                      )
                     : const Text(''),
               ],
             ),

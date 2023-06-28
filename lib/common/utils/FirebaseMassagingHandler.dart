@@ -137,7 +137,7 @@ class FirebaseMassagingHandler {
                         if(Get.isSnackbarOpen){
                           Get.closeAllSnackbars();
                         }
-                        Get.toNamed(AppRoutes.VoiceCall, parameters: {
+                        Get.toNamed(AppRoutes.voiceCall, parameters: {
                           "to_token": to_token,
                           "to_name": to_name,
                           "to_avatar": to_avatar,
@@ -215,7 +215,7 @@ class FirebaseMassagingHandler {
                           if(Get.isSnackbarOpen){
                             Get.closeAllSnackbars();
                           }
-                          Get.toNamed(AppRoutes.VideoCall, parameters: {
+                          Get.toNamed(AppRoutes.videoCall, parameters: {
                             "to_token": to_token,
                             "to_name": to_name,
                             "to_avatar": to_avatar,
@@ -246,7 +246,7 @@ class FirebaseMassagingHandler {
                 Get.closeAllSnackbars();
               }
 
-              if(Get.currentRoute.contains(AppRoutes.VoiceCall) || Get.currentRoute.contains(AppRoutes.VideoCall)){
+              if(Get.currentRoute.contains(AppRoutes.voiceCall) || Get.currentRoute.contains(AppRoutes.videoCall)){
                 Get.back();
               }
 

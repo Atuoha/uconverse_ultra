@@ -2,9 +2,9 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:liquid_swipe/liquid_swipe.dart';
 import 'package:flutter/services.dart';
-import '../components/splash_container.dart';
-import '../constants/colors.dart';
+import '../common/widgets/splash_container.dart';
 import '../generated/assets.dart';
+import '../common/style/color.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -16,7 +16,6 @@ class SplashScreen extends StatefulWidget {
 class SplashScreenState extends State<SplashScreen> {
   int currentPageIndex = 0;
   LiquidController? liquidController;
-  UpdateType? updateType;
 
   @override
   void initState() {
@@ -29,21 +28,21 @@ class SplashScreenState extends State<SplashScreen> {
       title: 'Feel the vibes of others',
       subtitle: 'allowing the springs of others to find you',
       imageAsset: Assets.imagesSlide4,
-      backgroundColor: primaryColor,
+      backgroundColor: AppColor.primaryColor,
       textColor: Colors.white,
     ),
     const SplashContainer(
       title: 'Grow outside yor space',
       subtitle: 'reaching out to more stands outside your space',
       imageAsset: Assets.imagesSlider2,
-      backgroundColor: buttonColor,
+      backgroundColor: AppColor.buttonColor,
       textColor: Colors.white,
     ),
      const SplashContainer(
       title: 'Find new people',
       subtitle: 'discovering awesome new people around you',
       imageAsset: Assets.imagesSlider3,
-      backgroundColor: accentColor,
+      backgroundColor: AppColor.accentColor,
       textColor: Colors.white,
     ),
     const SplashContainer(
@@ -51,7 +50,7 @@ class SplashScreenState extends State<SplashScreen> {
       subtitle: 'a place you\'ll feel more connected with people',
       imageAsset: Assets.imagesChatting,
       backgroundColor: Colors.white,
-      textColor: primaryColor,
+      textColor: AppColor.primaryColor,
       isLast: true,
     ),
   ];

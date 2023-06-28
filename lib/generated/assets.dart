@@ -68,7 +68,7 @@ class Assets {
   static const String imagesSlider3 = 'assets/images/slider3.png';
   static const String imagesTyping = 'assets/images/typing.png';
   static const String imagesUconverse = 'assets/images/uconverse.jpg';
-  static const String imagesUconverseTransparent = 'assets/images/uconverse_transparent.jpg';
+  static const String imagesUconverseTransparent = 'assets/images/uconverse_transparent.png';
   static const String imagesVideoIconPraise =
       'assets/images/video_icon_praise.png';
   static const String imagesVideoMsgIcon = 'assets/images/video_msg_icon.png';

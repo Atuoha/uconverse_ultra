@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:uconverse_ultra/screens/entry.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:uconverse_ultra/common/routes/pages.dart';
+
+import 'common/style/color.dart';
 
 void main() {
   runApp(const UconverseApp());
@@ -12,13 +16,18 @@ class UconverseApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
-      SystemUiOverlayStyle.dark.copyWith(statusBarColor: Colors.transparent),
+      SystemUiOverlayStyle.dark.copyWith(
+        statusBarColor: Colors.transparent,
+        systemNavigationBarColor: AppColor.primaryColorLite,
+      ),
     );
 
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        body: EntryScreen(),
+    return ScreenUtilInit(
+      designSize: const Size(360, 780),
+      builder: (context, child) => GetMaterialApp(
+        debugShowCheckedModeBanner: false,
+        initialRoute: AppPages.initial,
+        getPages: AppPages.routes,
       ),
     );
   }

@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:uconverse_ultra/generated/assets.dart';
-import 'package:uconverse_ultra/screens/splash_screen.dart';
-import '../constants/colors.dart';
+import 'splash_screen.dart';
+import '../common/style/color.dart';
 
 class EntryScreen extends StatefulWidget {
   const EntryScreen({
@@ -40,7 +40,7 @@ class _EntryScreenState extends State<EntryScreen> {
               'Uconverse',
               style: TextStyle(
                 fontWeight: FontWeight.w700,
-                color: primaryColor,
+                color: AppColor.primaryColor,
                 fontSize: 29,
               ),
             ),
@@ -49,7 +49,7 @@ class _EntryScreenState extends State<EntryScreen> {
               '...conversing without limits',
               style: TextStyle(
                 fontWeight: FontWeight.w400,
-                color: primaryColor,
+                color: AppColor.primaryColor,
                 fontSize: 15,
               ),
             )

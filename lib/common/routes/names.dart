@@ -1,25 +1,27 @@
 class AppRoutes {
-  static const INITIAL = '/';
-  static const SIGN_IN = '/sign_in';
-  static const EmailLogin = '/email_login';
-  static const Register = '/register';
-  static const Forgot = '/forgot';
-  static const Phone = '/phone';
-  static const SendCode = '/SendCode';
-  static const NotFound = '/not_found';
+  static const initial = '/';
+  static const splash = '/splash';
+  static const signIn = '/sign_in';
+  static const emailLogin = '/email_login';
+  static const register = '/register';
+  static const forgot = '/forgot';
+  static const phone = '/phone';
+  static const sendCode = '/SendCode';
+  static const notFound = '/not_found';
 
   //contact
-  static const Contact = '/contact';
+  static const contact = '/contact';
+
   // message
-  static const Message = '/message';
+  static const message = '/message';
 
-  static const Profile = '/profile';
+  static const profile = '/profile';
+
   //chat
-  static const Chat = '/chat';
+  static const chat = '/chat';
 
-  static const Photoimgview = '/photoimgview';
+  static const photoImgView = '/photoImgView';
 
-  static const VoiceCall = '/voicecall';
-  static const VideoCall = '/videocall';
-
+  static const voiceCall = '/voiceCall';
+  static const videoCall = '/videoCall';
 }
