@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import '../../../common/routes/names.dart';
 import 'state.dart';
 import '../../../common/style/color.dart';
 import '../../../generated/assets.dart';
@@ -57,6 +58,6 @@ class SplashController extends GetxController {
 
   // this is called after splash screen
   void launchApp() {
-    print('launching App....');
+    Get.offAllNamed(AppRoutes.message);
   }
 }

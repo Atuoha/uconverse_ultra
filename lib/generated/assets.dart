@@ -2,23 +2,11 @@
 class Assets {
   Assets._();
 
-  static const String assetsAgoraLogo = 'assets/agora-logo.png';
-  static const String assetsAlert = 'assets/alert.mp3';
-  static const String assetsDang = 'assets/dang.mp3';
-  static const String assetsDing = 'assets/ding.mp3';
-  static const String assetsGif = 'assets/gif.gif';
-  static const String assetsImagesUconverse = 'assets/images/uconverse.png';
-  static const String assetsJpg = 'assets/jpg.jpg';
-  static const String assetsSoundHorizon = 'assets/Sound_Horizon.mp3';
-  static const String audioMixingAgora =
-      'assets/audio_mixing/Agora.io-Interactions.mp3';
   static const String fontsAvenirBook = 'assets/fonts/Avenir-Book.ttf';
   static const String fontsDemoIndex = 'assets/fonts/demo_index.html';
   static const String fontsIconfont = 'assets/fonts/iconfont.ttf';
-  static const String fontsMontserratMedium =
-      'assets/fonts/Montserrat-Medium.ttf';
-  static const String fontsMontserratSemiBold =
-      'assets/fonts/Montserrat-SemiBold.ttf';
+  static const String fontsMontserratMedium = 'assets/fonts/Montserrat-Medium.ttf';
+  static const String fontsMontserratSemiBold = 'assets/fonts/Montserrat-SemiBold.ttf';
   static const String iconsAMicrophone = 'assets/icons/a_microphone.png';
   static const String iconsAPhone = 'assets/icons/a_phone.png';
   static const String iconsAPhoto = 'assets/icons/a_photo.png';
@@ -50,28 +38,30 @@ class Assets {
   static const String iconsSend = 'assets/icons/send.png';
   static const String iconsVideo = 'assets/icons/video.png';
   static const String iconsVoice = 'assets/icons/voice.png';
-  static const String imagesActionbarSearch =
-      'assets/images/actionbar_search.png';
-  static const String imageTitleBack = 'assets/images/title_back.png';
+  static const String imagesActionbarSearch = 'assets/images/actionbar_search.png';
   static const String imagesChatting = 'assets/images/chatting.png';
   static const String imagesDefault = 'assets/images/default.png';
-  static const String imagesIcons8CircledPlay96 =
-      'assets/images/icons8-circled-play-96.png';
-  static const String imagesIcons8LoveCircled96 =
-      'assets/images/icons8-love-circled-96.png';
+  static const String imagesGif = 'assets/images/gif.gif';
+  static const String imagesIcons8Account96 = 'assets/images/icons8-account-96.png';
   static const String imagesIconsFacebook = 'assets/images/icons-facebook.png';
   static const String imagesIconsGoogle = 'assets/images/icons-google.png';
   static const String imagesIconsTwitter = 'assets/images/icons-twitter.png';
-  static const String imagesQuick = 'assets/images/quick.png';
+  static const String imagesJpg = 'assets/images/jpg.png';
+  static const String imagesLove = 'assets/images/love.png';
+  static const String imagesPlay = 'assets/images/play.png';
+  static const String imagesProfileDefault = 'assets/images/profile_default.png';
   static const String imagesSlide4 = 'assets/images/slide4.png';
   static const String imagesSlider2 = 'assets/images/slider2.png';
   static const String imagesSlider3 = 'assets/images/slider3.png';
-  static const String imagesTyping = 'assets/images/typing.png';
+  static const String imagesTitleBack = 'assets/images/title_back.png';
   static const String imagesUconverse = 'assets/images/uconverse.jpg';
   static const String imagesUconverseTransparent = 'assets/images/uconverse_transparent.png';
-  static const String imagesVideoIconPraise =
-      'assets/images/video_icon_praise.png';
+  static const String imagesVideoIconPraise = 'assets/images/video_icon_praise.png';
   static const String imagesVideoMsgIcon = 'assets/images/video_msg_icon.png';
-  static const String imagesVideoShareIcon =
-      'assets/images/video_share_icon.png';
+  static const String imagesVideoShareIcon = 'assets/images/video_share_icon.png';
+  static const String soundEffectsAlert = 'assets/sound_effects/alert.mp3';
+  static const String soundEffectsDang = 'assets/sound_effects/dang.mp3';
+  static const String soundEffectsDing = 'assets/sound_effects/ding.mp3';
+  static const String soundEffectsSound = 'assets/sound_effects/sound.mp3';
+
 }
