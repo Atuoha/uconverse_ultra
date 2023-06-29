@@ -2,7 +2,6 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:liquid_swipe/liquid_swipe.dart';
-import 'package:flutter/services.dart';
 import 'package:uconverse_ultra/pages/frames/splash/controller.dart';
 
 class SplashPage extends GetView<SplashController> {

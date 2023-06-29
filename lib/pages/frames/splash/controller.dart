@@ -56,7 +56,7 @@ class SplashController extends GetxController {
     print('Splash Screen');
   }
 
-  // this is called after splash screen
+  // launching message screen
   void launchApp() {
     Get.offAllNamed(AppRoutes.message);
   }

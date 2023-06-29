@@ -5,8 +5,10 @@ import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:uconverse_ultra/common/routes/pages.dart';
 
 import 'common/style/color.dart';
+import 'global_config/global.dart';
 
-void main() {
+Future<void> main() async {
+  await Global.init();
   runApp(const UconverseApp());
 }
 
