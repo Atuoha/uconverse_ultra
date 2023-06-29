@@ -8,7 +8,7 @@ import 'common/style/color.dart';
 import 'global_config/global.dart';
 
 Future<void> main() async {
-  await Global.init();
+  await Global.init(); // global init
   runApp(const UconverseApp());
 }
 
