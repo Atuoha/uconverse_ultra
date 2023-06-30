@@ -1,14 +1,14 @@
-/// 用户 - 配置信息
+/// user_profile
 const String STORAGE_USER_PROFILE_KEY = 'user_profile';
 
-/// 用户 - 配置信息
+/// user_token
 const String STORAGE_USER_TOKEN_KEY = 'user_token';
 
-/// 设备是否第一次打开
+/// device_first_open
 const String STORAGE_DEVICE_FIRST_OPEN_KEY = 'device_first_open';
 
-/// 首页新闻cacheKey
+/// cache_index_news
 const String STORAGE_INDEX_NEWS_CACHE_KEY = 'cache_index_news';
 
-/// 多语言
+/// language_code
 const String STORAGE_LANGUAGE_CODE = 'language_code';
