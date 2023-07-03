@@ -6,7 +6,6 @@ import 'state.dart';
 class WelcomeController extends GetxController {
   WelcomeController();
 
-  final appLogo = Assets.imagesUconverseTransparent;
   final title = 'Uconverse';
   final subTitle = '...conversing without limits';
 

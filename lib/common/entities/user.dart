@@ -1,8 +1,10 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+import '../enums/sign_in_type.dart';
+
 class LoginRequestEntity {
-  int? type;
+  SignInType? type;
   String? name;
   String? description;
   String? email;

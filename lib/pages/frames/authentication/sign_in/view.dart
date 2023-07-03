@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:uconverse_ultra/pages/frames/authentication/sign_in/controller.dart';
-
+import '../../../../common/enums/sign_in_type.dart';
 import '../../../../common/style/color.dart';
 import '../../../../generated/assets.dart';
 
@@ -23,51 +23,41 @@ class SignInPage extends GetView<SignInController> {
           children: [
             Image.asset(
               Assets.imagesUconverseTransparent,
-              width: 100.sp,
+              width: 110.sp,
             ),
             const SizedBox(height: 25),
-            buildThirdPartyLogin(
+            buildLoginMechanism(
               title: 'Google',
               imgUrl: Assets.iconsGoogle,
-              fnc: () => null,
+              type: SignInType.google,
             ),
-            const SizedBox(height: 10),
-            buildThirdPartyLogin(
+            SizedBox(height: 15.h),
+            buildLoginMechanism(
               title: 'Apple',
               imgUrl: Assets.iconsApple,
-              fnc: () => null,
+              type: SignInType.apple,
             ),
-            const SizedBox(height: 10),
-            buildThirdPartyLogin(
+            SizedBox(height: 15.h),
+            buildLoginMechanism(
               title: 'Facebook',
               imgUrl: Assets.iconsFacebook,
-              fnc: () => null,
+              type: SignInType.facebook,
             ),
-            const SizedBox(height: 20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Expanded(
-                  child: Divider(
-                    indent: 50,
-                    color: AppColor.secondaryColor,
-                    height: 2.h,
-                  ),
-                ),
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 5),
-                  child: Text('or'),
-                ),
-                Expanded(
-                  child: Divider(
-                    endIndent: 50,
-                    color: AppColor.secondaryColor,
-                    height: 2.h,
-                  ),
-                ),
-              ],
-            ),
+            SizedBox(height: 20.h),
+            buildOrWidget(),
             SizedBox(height: 25.h),
+            buildLoginMechanism(
+              title: 'email',
+              imgInvolved: false,
+              type: SignInType.email,
+            ),
+            SizedBox(height: 15.h),
+            buildLoginMechanism(
+              title: 'phone number',
+              imgInvolved: false,
+              type: SignInType.phone,
+            ),
+            SizedBox(height: 30.h),
             const Text('Already have an account?'),
             const SizedBox(height: 5),
             GestureDetector(
@@ -85,14 +75,42 @@ class SignInPage extends GetView<SignInController> {
     );
   }
 
-  // Third party login
-  Widget buildThirdPartyLogin({
+  // OR Widget
+  Widget buildOrWidget() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Expanded(
+          child: Divider(
+            indent: 50,
+            color: AppColor.secondaryColor,
+            height: 2.h,
+          ),
+        ),
+        const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 5),
+          child: Text('or'),
+        ),
+        Expanded(
+          child: Divider(
+            endIndent: 50,
+            color: AppColor.secondaryColor,
+            height: 2.h,
+          ),
+        ),
+      ],
+    );
+  }
+
+  // Login mechanism
+  Widget buildLoginMechanism({
     required String title,
-    required String imgUrl,
-    required Function fnc,
+    String imgUrl = '',
+    required SignInType type,
+    bool imgInvolved = true,
   }) {
     return GestureDetector(
-      onTap: () => fnc,
+      onTap: () => controller.handleSignIn(type),
       child: Container(
         width: 215.w,
         height: 44.h,
@@ -104,18 +122,21 @@ class SignInPage extends GetView<SignInController> {
             BoxShadow(
               color: Colors.grey.withOpacity(0.2),
               spreadRadius: 1,
-              offset: Offset(0, 1),
+              offset: const Offset(0, 1),
               blurRadius: 1,
             ),
           ],
         ),
-        child: Wrap(
-          crossAxisAlignment: WrapCrossAlignment.center,
+        child: Row(
+          mainAxisAlignment:
+              imgInvolved ? MainAxisAlignment.start : MainAxisAlignment.center,
           children: [
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20.w),
-              child: Image.asset(imgUrl, width: 20.w),
-            ),
+            imgInvolved
+                ? Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 20.w),
+                    child: Image.asset(imgUrl, width: 20.w),
+                  )
+                : const SizedBox.shrink(),
             Text(
               'Sign in with $title',
               style: const TextStyle(

@@ -30,6 +30,7 @@ class Assets {
   static const String iconsContact = 'assets/icons/contact.png';
   static const String iconsDown = 'assets/icons/down.png';
   static const String iconsEdit = 'assets/icons/edit.png';
+  static const String iconsEmail = 'assets/icons/email.png';
   static const String iconsFacebook = 'assets/icons/facebook.png';
   static const String iconsFile = 'assets/icons/file.png';
   static const String iconsGoogle = 'assets/icons/google.png';

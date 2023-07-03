@@ -9,7 +9,7 @@ class AppColor {
 
   static const Color primaryColor = Color(0xFF411767);
 
-  static  Color primaryColorLite = const Color(0xFF411767).withOpacity(0.5);
+  static  Color primaryColorLite = const Color(0xFF411767).withOpacity(0.8);
 
   static const Color secondaryText = Color(0xFF74788D);
 

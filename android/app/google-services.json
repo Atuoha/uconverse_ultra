@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "189073413369",
+    "project_id": "uconverse-ultra",
+    "storage_bucket": "uconverse-ultra.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:189073413369:android:7d51f5176f9fe0b3b3be28",
+        "android_client_info": {
+          "package_name": "com.example.uconvers_ultra"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "189073413369-foh42ftlv9p6bsohv9kipe1u3j1stqh2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDRlRWF4b5-oi90SbgQngcyIEbWqBf7K8w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "189073413369-foh42ftlv9p6bsohv9kipe1u3j1stqh2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
