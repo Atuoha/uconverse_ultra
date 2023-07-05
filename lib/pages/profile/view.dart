@@ -14,10 +14,14 @@ class ProfilePage extends GetView<ProfileController> {
       floatingActionButton: FloatingActionButton.extended(
         backgroundColor: AppColor.accentColorLite,
         onPressed: () => Get.defaultDialog(
-          title: "Sign out account",
-          content: const Text("Are you sure you want to sign out?"),
+          title: "Sign out",
+          content: const Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Text("Are you sure you want to sign out?"),
+          ),
           onConfirm: controller.signOut,
-          onCancel: ()=>Navigator.pop(context)
+          onCancel: () => Navigator.pop(context),
+          confirmTextColor: Colors.white,
         ),
         icon: const Icon(Icons.logout),
         label: const Text('Sign out'),
@@ -54,6 +58,7 @@ class ProfilePage extends GetView<ProfileController> {
   AppBar _buildAppBar() {
     return AppBar(
       automaticallyImplyLeading: false,
+      backgroundColor: Colors.transparent,
       leading: Builder(
         builder: (context) => GestureDetector(
           onTap: () => Navigator.of(context).pop(),
@@ -63,12 +68,6 @@ class ProfilePage extends GetView<ProfileController> {
           ),
         ),
       ),
-      title: const Text(
-        'Profile',
-        style: TextStyle(
-          color: AppColor.primaryText,
-        ),
-      ),
       actions: [
         Wrap(
           crossAxisAlignment: WrapCrossAlignment.center,
@@ -76,7 +75,7 @@ class ProfilePage extends GetView<ProfileController> {
             const Text(
               'Status',
               style: TextStyle(
-                color: AppColor.secondaryColor,
+                color: AppColor.primaryText,
                 fontSize: 15,
               ),
             ),
@@ -117,8 +116,8 @@ class ProfilePage extends GetView<ProfileController> {
           ),
         ),
         Positioned(
-          bottom: 8.h,
-          right: 6.h,
+          bottom: 15.h,
+          right: 4.h,
           child: GestureDetector(
             onTap: null,
             child: Container(
@@ -132,7 +131,7 @@ class ProfilePage extends GetView<ProfileController> {
                 padding: const EdgeInsets.all(3.0),
                 child: Center(
                   child: Image.asset(
-                    Assets.iconsEdit,
+                    Assets.iconsAPhoto,
                   ),
                 ),
               ),

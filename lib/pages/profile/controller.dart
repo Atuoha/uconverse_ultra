@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
-import '../../common/routes/names.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import '../../common/store/user.dart';
 import 'index.dart';
 
 class ProfileController extends GetxController {
@@ -15,7 +16,8 @@ class ProfileController extends GetxController {
   }
 
   Future<void> signOut() async {
-    await _firebaseAuth.signOut();
-    Get.offAllNamed(AppRoutes.signIn);
+    // await _firebaseAuth.signOut();
+    await GoogleSignIn().signOut();
+    await UserStore.to.onLogout();
   }
 }
