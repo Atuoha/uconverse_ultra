@@ -8,6 +8,8 @@ import '../../generated/assets.dart';
 class MessagePage extends GetView<MessageController> {
   const MessagePage({super.key});
 
+
+  // head bar
   Widget _headBar() => Container(
         width: 320.w,
         height: 44.h,
@@ -41,7 +43,7 @@ class MessagePage extends GetView<MessageController> {
                   child: Container(
                     width: 10.w,
                     height: 10.h,
-                    decoration: const BoxDecoration(
+                    decoration:  const BoxDecoration(
                       color: AppColor.activeColor,
                       shape: BoxShape.circle,
                     ),

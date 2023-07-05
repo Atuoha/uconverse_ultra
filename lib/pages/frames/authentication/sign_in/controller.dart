@@ -82,7 +82,4 @@ class SignInController extends GetxController {
     Get.offAllNamed(AppRoutes.message);
   }
 
-  Future<void> signOut() async {
-    await _firebaseAuth.signOut();
-  }
 }
