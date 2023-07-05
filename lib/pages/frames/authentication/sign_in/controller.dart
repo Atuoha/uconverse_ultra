@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import '../../../../common/entities/user.dart';
 import '../../../../common/enums/sign_in_type.dart';
+import '../../../../common/routes/names.dart';
 import '../../../../generated/assets.dart';
 import 'state.dart';
 
@@ -14,6 +15,8 @@ class SignInController extends GetxController {
   final GoogleSignIn _googleSignIn = GoogleSignIn(
     scopes: ['openid'],
   );
+
+  final _firebaseAuth = FirebaseAuth.instance;
 
   Future<void> handleSignIn(SignInType type) async {
     switch (type) {
@@ -41,6 +44,8 @@ class SignInController extends GetxController {
           loginRequestEntity.name = username;
           loginRequestEntity.open_id = googleUser.id;
           loginRequestEntity.type = type;
+          asyncPostAllData();
+          _firebaseAuth.signInWithCredential(credential);
 
           print('Google.........');
         } catch (e) {}
@@ -70,5 +75,14 @@ class SignInController extends GetxController {
         } catch (e) {}
         break;
     }
+  }
+
+
+  void asyncPostAllData() {
+    Get.offAllNamed(AppRoutes.message);
+  }
+
+  Future<void> signOut() async {
+    await _firebaseAuth.signOut();
   }
 }

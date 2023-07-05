@@ -5,6 +5,7 @@ import '../../pages/frames/authentication/sign_in/index.dart';
 import '../../pages/frames/welcome/index.dart';
 import '../../pages/frames/splash/index.dart';
 import '../../pages/message/index.dart';
+import '../../pages/profile/index.dart';
 import 'routes.dart';
 
 class AppPages {
@@ -61,8 +62,10 @@ class AppPages {
       ],
     ),
 
-    /*
     GetPage(name: AppRoutes.profile, page: () => ProfilePage(), binding: ProfileBinding()),
+
+
+    /*
     GetPage(name: AppRoutes.chat, page: () => ChatPage(), binding: ChatBinding()),
 
     GetPage(name: AppRoutes.photoImgView, page: () => PhotoImgViewPage(), binding: PhotoImgViewBinding()),

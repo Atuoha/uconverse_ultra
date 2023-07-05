@@ -4,9 +4,9 @@ import 'package:uconverse_ultra/common/store/store.dart';
 
 import 'package:get/get.dart';
 
-/// 检查是否登录
+/// route auth middleware
 class RouteAuthMiddleware extends GetMiddleware {
-  // priority 数字小优先级高
+  // priority
   @override
   int? priority = 0;
 
@@ -16,7 +16,7 @@ class RouteAuthMiddleware extends GetMiddleware {
   RouteSettings? redirect(String? route) {
     if (UserStore.to.isLogin ||
         route == AppRoutes.signIn ||
-        route == AppRoutes.initial) {
+        route == AppRoutes.initial || route == AppRoutes.message) {
       return null;
     } else {
       Future.delayed(
