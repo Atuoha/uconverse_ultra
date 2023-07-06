@@ -4,6 +4,8 @@ import 'package:google_sign_in/google_sign_in.dart';
 import '../../../../common/entities/user.dart';
 import '../../../../common/enums/sign_in_type.dart';
 import '../../../../common/routes/names.dart';
+import '../../../../common/store/user.dart';
+import '../../../../common/utils/http.dart';
 import '../../../../generated/assets.dart';
 import 'state.dart';
 
@@ -77,9 +79,10 @@ class SignInController extends GetxController {
     }
   }
 
-
-  void asyncPostAllData() {
+  void asyncPostAllData() async {
+    var response = await HttpUtil().get('/api/index');
+    print('DATA GOtten---:: $response');
+    UserStore.to.setIsLoggedIn = true;
     Get.offAllNamed(AppRoutes.message);
   }
-
 }

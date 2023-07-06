@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:uconverse_ultra/common/routes/pages.dart';
@@ -28,6 +29,11 @@ class UconverseApp extends StatelessWidget {
       ),
     );
 
+    EasyLoading.instance
+      ..backgroundColor = AppColor.accentColorLite
+      ..progressColor = Colors.white
+      ..loadingStyle = EasyLoadingStyle.light;
+
     return ScreenUtilInit(
       designSize: const Size(360, 780),
       builder: (context, child) => GetMaterialApp(
@@ -35,6 +41,7 @@ class UconverseApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         initialRoute: AppPages.initial,
         getPages: AppPages.routes,
+        builder: EasyLoading.init(),
       ),
     );
   }

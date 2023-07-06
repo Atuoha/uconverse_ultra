@@ -7,7 +7,6 @@ import 'package:dio_cookie_manager/dio_cookie_manager.dart';
 import 'package:uconverse_ultra/common/store/store.dart';
 import 'package:uconverse_ultra/common/utils/utils.dart';
 import 'package:uconverse_ultra/common/values/values.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart' hide FormData;
 
@@ -110,7 +109,7 @@ class HttpUtil {
         EasyLoading.showError(eInfo.message);
         break;
       default:
-        EasyLoading.showError('未知错误');
+        EasyLoading.showError('An error occured');
         break;
     }
   }

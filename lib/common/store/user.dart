@@ -10,14 +10,20 @@ class UserStore extends GetxController {
 
   // isLogin
   final _isLogin = false.obs;
-  // token
+
+  // login token
   String token = '';
-  // profile
+
+  // user profile
   final _profile = UserItem().obs;
 
   bool get isLogin => _isLogin.value;
+
   UserItem get profile => _profile.value;
+
   bool get hasToken => token.isNotEmpty;
+
+  set setIsLoggedIn(bool login) => _isLogin.value = login;
 
   @override
   void onInit() {
@@ -42,7 +48,7 @@ class UserStore extends GetxController {
     // var result = await UserAPI.profile();
     // _profile(result);
     // _isLogin.value = true;
-   return StorageService.to.getString(STORAGE_USER_PROFILE_KEY);
+    return StorageService.to.getString(STORAGE_USER_PROFILE_KEY);
   }
 
   // save  profile
@@ -55,7 +61,7 @@ class UserStore extends GetxController {
 
   // onLogout Fnc
   Future<void> onLogout() async {
-   // if (_isLogin.value) await UserAPI.logout();
+    // if (_isLogin.value) await UserAPI.logout();
     await StorageService.to.remove(STORAGE_USER_TOKEN_KEY);
     await StorageService.to.remove(STORAGE_USER_PROFILE_KEY);
     _isLogin.value = false;

@@ -1,5 +1,6 @@
 // baidu yapi
- const SERVER_API_URL = 'https://chatty.codemain.top/';
+ const SERVER_API_URL = 'http://10.0.0.2:8000';
+// http://10.0.2.2:8000
  const APPID = "e11666dd3c4346568b67b80823bcca50";
 
 //  yapi
