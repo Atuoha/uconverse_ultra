@@ -12,5 +12,6 @@ class Global {
     await Get.putAsync<StorageService>(() => StorageService().init());
     await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
     Get.put<UserStore>(UserStore());
+    Get.put<ConfigStore>(ConfigStore());
   }
 }

@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
@@ -9,7 +7,6 @@ import '../../../../common/entities/user.dart';
 import '../../../../common/enums/sign_in_type.dart';
 import '../../../../common/routes/names.dart';
 import '../../../../common/store/user.dart';
-import '../../../../common/utils/http.dart';
 import '../../../../common/widgets/toast.dart';
 import '../../../../generated/assets.dart';
 import 'state.dart';

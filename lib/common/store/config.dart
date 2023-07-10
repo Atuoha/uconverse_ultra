@@ -18,6 +18,8 @@ class ConfigStore extends GetxController {
     Locale('zh', 'CN'),
   ];
 
+  set setIsFirstOpen(bool value) => isFirstOpen = value;
+
 
   @override
   void onInit() {

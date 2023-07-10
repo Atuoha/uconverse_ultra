@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:uconverse_ultra/common/store/config.dart';
 import '../../../common/routes/names.dart';
 import 'state.dart';
 import '../../../common/style/color.dart';
@@ -58,6 +59,7 @@ class SplashController extends GetxController {
 
   // launching message screen
   void launchApp() {
+    ConfigStore.to.setIsFirstOpen = true;
     Get.offAllNamed(AppRoutes.message);
   }
 }

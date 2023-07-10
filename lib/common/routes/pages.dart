@@ -25,6 +25,9 @@ class AppPages {
       name: AppRoutes.splash,
       page: () => const SplashPage(),
       binding: SplashBinding(),
+      middlewares: [
+        RouteWelcomeMiddleware(priority: 1),
+      ],
     ),
 
     GetPage(
@@ -62,8 +65,10 @@ class AppPages {
       ],
     ),
 
-    GetPage(name: AppRoutes.profile, page: () => ProfilePage(), binding: ProfileBinding()),
-
+    GetPage(
+        name: AppRoutes.profile,
+        page: () => ProfilePage(),
+        binding: ProfileBinding()),
 
     /*
     GetPage(name: AppRoutes.chat, page: () => ChatPage(), binding: ChatBinding()),
