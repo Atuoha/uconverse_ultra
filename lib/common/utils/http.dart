@@ -4,6 +4,7 @@ import 'package:cookie_jar/cookie_jar.dart';
 import 'package:dio/dio.dart';
 import 'package:dio/adapter.dart';
 import 'package:dio_cookie_manager/dio_cookie_manager.dart';
+import 'package:flutter/foundation.dart';
 import 'package:uconverse_ultra/common/store/store.dart';
 import 'package:uconverse_ultra/common/utils/utils.dart';
 import 'package:uconverse_ultra/common/values/values.dart';
@@ -12,16 +13,16 @@ import 'package:get/get.dart' hide FormData;
 
 
 class HttpUtil {
-  static HttpUtil _instance = HttpUtil._internal();
+  static final HttpUtil _instance = HttpUtil._internal();
   factory HttpUtil() => _instance;
 
   late Dio dio;
-  CancelToken cancelToken = new CancelToken();
+  CancelToken cancelToken = CancelToken();
 
 
   HttpUtil._internal() {
     // BaseOptions、Options、RequestOptions 都可以配置参数，优先级别依次递增，且可以根据优先级别覆盖参数
-    BaseOptions options = new BaseOptions(
+    BaseOptions options = BaseOptions(
       // 请求基地址,可以包含子路径
       baseUrl: SERVER_API_URL,
 
@@ -51,7 +52,7 @@ class HttpUtil {
       responseType: ResponseType.json,
     );
 
-    dio = new Dio(options);
+    dio = Dio(options);
 
     (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
         (HttpClient client) {
@@ -99,17 +100,16 @@ class HttpUtil {
 
   // 错误处理
   void onError(ErrorEntity eInfo) {
-    print('error.code -> ' +
-        eInfo.code.toString() +
-        ', error.message -> ' +
-        eInfo.message);
+    if (kDebugMode) {
+      print('error.code -> ${eInfo.code}, error.message -> ${eInfo.message}');
+    }
     switch (eInfo.code) {
       case 401:
         UserStore.to.onLogout();
         EasyLoading.showError(eInfo.message);
         break;
       default:
-        EasyLoading.showError('An error occured');
+        EasyLoading.showError('An error occurred');
         break;
     }
   }
@@ -118,15 +118,14 @@ class HttpUtil {
   ErrorEntity createErrorEntity(DioError error) {
     switch (error.type) {
       case DioErrorType.cancel:
-        return ErrorEntity(code: -1, message: "请求取消");
+        return ErrorEntity(code: -1, message: "cancel request");
       case DioErrorType.connectTimeout:
-        return ErrorEntity(code: -1, message: "连接超时");
+        return ErrorEntity(code: -1, message: "connection time out");
       case DioErrorType.sendTimeout:
-        return ErrorEntity(code: -1, message: "请求超时");
+        return ErrorEntity(code: -1, message: "request time out");
       case DioErrorType.receiveTimeout:
-        return ErrorEntity(code: -1, message: "响应超时");
-      case DioErrorType.cancel:
-        return ErrorEntity(code: -1, message: "请求取消");
+        return ErrorEntity(code: -1, message: "response time out");
+
       case DioErrorType.response:
         {
           try {
@@ -136,23 +135,23 @@ class HttpUtil {
             // return ErrorEntity(code: errCode, message: errMsg);
             switch (errCode) {
               case 400:
-                return ErrorEntity(code: errCode, message: "请求语法错误");
+                return ErrorEntity(code: errCode, message: "Bad request");
               case 401:
-                return ErrorEntity(code: errCode, message: "没有权限");
+                return ErrorEntity(code: errCode, message: "Unauthorized");
               case 403:
-                return ErrorEntity(code: errCode, message: "服务器拒绝执行");
+                return ErrorEntity(code: errCode, message: "Forbidden Request");
               case 404:
-                return ErrorEntity(code: errCode, message: "无法连接服务器");
+                return ErrorEntity(code: errCode, message: "Not found");
               case 405:
-                return ErrorEntity(code: errCode, message: "请求方法被禁止");
+                return ErrorEntity(code: errCode, message: "Method Not Allowed");
               case 500:
-                return ErrorEntity(code: errCode, message: "服务器内部错误");
+                return ErrorEntity(code: errCode, message: "Internal Server error");
               case 502:
-                return ErrorEntity(code: errCode, message: "无效的请求");
+                return ErrorEntity(code: errCode, message: "Bad Gateway");
               case 503:
-                return ErrorEntity(code: errCode, message: "服务器挂了");
+                return ErrorEntity(code: errCode, message: "Service Unavailable");
               case 505:
-                return ErrorEntity(code: errCode, message: "不支持HTTP协议请求");
+                return ErrorEntity(code: errCode, message: "HTTP Version Not Supported");
               default:
                 {
                   // return ErrorEntity(code: errCode, message: "未知错误");
@@ -387,6 +386,7 @@ class ErrorEntity implements Exception {
   String message = "";
   ErrorEntity({required this.code, required this.message});
 
+  @override
   String toString() {
     if (message == "") return "Exception";
     return "Exception: code $code, $message";

@@ -1,11 +1,16 @@
+import 'dart:convert';
+
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import '../../../../common/apis/user.dart';
 import '../../../../common/entities/user.dart';
 import '../../../../common/enums/sign_in_type.dart';
 import '../../../../common/routes/names.dart';
 import '../../../../common/store/user.dart';
 import '../../../../common/utils/http.dart';
+import '../../../../common/widgets/toast.dart';
 import '../../../../generated/assets.dart';
 import 'state.dart';
 
@@ -31,11 +36,15 @@ class SignInController extends GetxController {
           final GoogleSignInAuthentication? googleAuth =
               await googleUser?.authentication;
 
+
+
           // Create a new credential
           final credential = GoogleAuthProvider.credential(
             accessToken: googleAuth?.accessToken,
             idToken: googleAuth?.idToken,
           );
+
+
 
           final String? username = googleUser!.displayName;
           final String email = googleUser.email;
@@ -46,11 +55,12 @@ class SignInController extends GetxController {
           loginRequestEntity.name = username;
           loginRequestEntity.open_id = googleUser.id;
           loginRequestEntity.type = type;
-          asyncPostAllData();
+          asyncPostAllData(loginRequestEntity);
           _firebaseAuth.signInWithCredential(credential);
 
-          print('Google.........');
-        } catch (e) {}
+        } catch (e) {
+          print('An error occurred $e');
+        }
         break;
 
       case SignInType.facebook:
@@ -79,10 +89,23 @@ class SignInController extends GetxController {
     }
   }
 
-  void asyncPostAllData() async {
-    var response = await HttpUtil().get('/api/index');
-    print('DATA GOtten---:: $response');
+  // after authentication
+  Future<void> asyncPostAllData(LoginRequestEntity loginRequestEntity) async {
+    EasyLoading.show(); // start loading
+    var result = await UserAPI.Login(params: loginRequestEntity);
+    if (result.code == 0) {
+      await UserStore.to.saveProfile(result.data!);
+      EasyLoading.dismiss(); // dismiss loading
+    }else{
+      EasyLoading.dismiss(); // dismiss loading
+      toastInfo(msg: 'Internet Error!');
+    }
     UserStore.to.setIsLoggedIn = true;
+
     Get.offAllNamed(AppRoutes.message);
   }
 }
+
+
+
+

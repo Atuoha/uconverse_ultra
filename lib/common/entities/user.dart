@@ -35,6 +35,8 @@ class LoginRequestEntity {
     "online": online,
   };
 }
+
+
 //api post response msg
 class UserLoginResponseEntity {
   int? code;
@@ -64,7 +66,7 @@ class UserItem {
   String? description;
   String? avatar;
   int? online;
-  int? type;
+  String? type;
 
   UserItem({
     this.access_token,

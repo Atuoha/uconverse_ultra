@@ -11,6 +11,9 @@ use \Illuminate\Support\Facades\DB;
 class LoginController extends Controller{
 
     public function login(Request $request){
+        // return ['data'=>"Hello this is working",'code'=>1,'msg'=>"It is reaching here"];
+
+
         $validator = Validator::make($request->all(),[
             'email'=>'max:50',
             'avatar'=>'required',
@@ -23,31 +26,38 @@ class LoginController extends Controller{
         if($validator->fails()){
             return ['code'=>-1,'data'=>'no valid data','msg'=>$validator->errors()->first(),];
         }
+        
 
-        $validated =  $validator->validated();
-        $map = [];
-        $map['type'] = $validated['type'];
-        $map['name'] = $validated['name'];
+        try{
 
-        $result = DB::table('users')->select('avatar','type','description','token','access_token','online')->where($map)->first();
+            $validated =  $validator->validated();
+            $map = [];
+            $map['type'] = $validated['type'];
+            $map['name'] = $validated['name'];
 
-        if(empty($result)){
-            $validated['token'] = md5(uniqid().rand(100000,99999));
-            $validated['created_at'] = Carbon::now();
-            $validated['access_token'] = md5(uniqid().rand(1000000,999999));
-            $validated['expire_date'] = Carbon::now()->addDays(30);
-            $user_id = DB::table('users')->insertGetId($validated);
+            $result = DB::table('users')->select('avatar','type','description','token','access_token','online')->where($map)->first();
 
-            $user_result =  DB::table('users')->select('avatar','type','description','token','access_token','online')->where('id','=',$user_id)->first();
+            if(empty($result)){
+                $validated['token'] = md5(uniqid().rand(100000,99999));
+                $validated['created_at'] = Carbon::now();
+                $validated['access_token'] = md5(uniqid().rand(1000000,999999));
+                $validated['expire_date'] = Carbon::now()->addDays(30);
+                $user_id = DB::table('users')->insertGetId($validated);
 
-            return ['code'=>0,'data'=>$user_result,'msg'=>'User has been created'];
-        }else{
-            $access_token = md5(uniqid().rand(1000000,999999));
-            $expire_date = Carbon::now()->addDays(30);
-            DB::table('users')->where($map)->update(['access_token'=> $access_token, 'expire_date'=> $expire_date]);
-            $result->access_token = $access_token;
-            return ['code'=>1,'data'=>$result,'msg'=>'User information updated'];
+                $user_result =  DB::table('users')->select('avatar','type','description','token','access_token','online')->where('id','=',$user_id)->first();
+
+                return ['code'=>0,'data'=>$user_result,'msg'=>'User has been created'];
+            }else{
+                $access_token = md5(uniqid().rand(1000000,999999));
+                $expire_date = Carbon::now()->addDays(30);
+                DB::table('users')->where($map)->update(['access_token'=> $access_token, 'expire_date'=> $expire_date]);
+                $result->access_token = $access_token;
+                return ['code'=>0,'data'=>$result,'msg'=>'User information updated'];
+            }
+        }catch(Exception $e){
+            return ['code'=>-1,'data'=>'An error occurred','msg'=>'An error occurred. ERROR: '.$e];
         }
+      
     }
 
     public function get_profile(Request $request){
