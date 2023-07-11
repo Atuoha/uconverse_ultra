@@ -8,14 +8,20 @@ import '../../generated/assets.dart';
 class MessagePage extends GetView<MessageController> {
   const MessagePage({super.key});
 
-
   // head bar
   Widget _headBar() => Container(
-        width: 320.w,
+        width: double.infinity,
         height: 44.h,
         margin: EdgeInsets.symmetric(vertical: 20.h),
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
+            const Text(
+              'Uconverse',
+              style: TextStyle(
+                color: Colors.white,
+              ),
+            ),
             Stack(
               children: [
                 GestureDetector(
@@ -43,7 +49,7 @@ class MessagePage extends GetView<MessageController> {
                   child: Container(
                     width: 10.w,
                     height: 10.h,
-                    decoration:  const BoxDecoration(
+                    decoration: const BoxDecoration(
                       color: AppColor.activeColor,
                       shape: BoxShape.circle,
                     ),
@@ -60,11 +66,11 @@ class MessagePage extends GetView<MessageController> {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         backgroundColor: AppColor.accentColorLite,
-        onPressed: null,
+        onPressed: controller.navigateToContacts,
         child: Padding(
           padding: const EdgeInsets.all(5.0),
           child: Image.asset(Assets.iconsContact),
-        )
+        ),
       ),
       body: CustomScrollView(
         slivers: [

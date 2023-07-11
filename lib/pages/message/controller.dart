@@ -10,4 +10,9 @@ class MessageController extends GetxController {
   Future<void> navigateToProfile() async{
    await Get.toNamed(AppRoutes.profile);
   }
+
+  // navigate to contacts
+  Future<void> navigateToContacts()async{
+    await Get.toNamed(AppRoutes.contact);
+  }
 }

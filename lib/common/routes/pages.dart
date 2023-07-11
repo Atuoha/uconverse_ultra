@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:uconverse_ultra/common/middlewares/middlewares.dart';
 import 'package:get/get.dart';
+import '../../pages/contact/bindings.dart';
+import '../../pages/contact/view.dart';
 import '../../pages/frames/authentication/sign_in/index.dart';
 import '../../pages/frames/welcome/index.dart';
 import '../../pages/frames/splash/index.dart';
@@ -51,9 +53,14 @@ class AppPages {
     GetPage(name: AppRoutes.phone, page: () => PhonePage(), binding: PhoneBinding()),
     GetPage(name: AppRoutes.sendCode, page: () => SendCodePage(), binding: SendCodeBinding()),
 
-    GetPage(name: AppRoutes.contact, page: () => ContactPage(), binding: ContactBinding()),
+ */
 
-    */
+    // contact page
+    GetPage(
+      name: AppRoutes.contact,
+      page: () => const ContactPage(),
+      binding: ContactBinding(),
+    ),
 
     // message screen
     GetPage(
@@ -67,8 +74,8 @@ class AppPages {
 
     GetPage(
         name: AppRoutes.profile,
-        page: () => ProfilePage(),
-        binding: ProfileBinding()),
+        page: () => const ProfilePage(),
+        binding: ProfileBinding(),),
 
     /*
     GetPage(name: AppRoutes.chat, page: () => ChatPage(), binding: ChatBinding()),
