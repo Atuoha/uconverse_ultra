@@ -1,20 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'widgets/contacts_list.dart';
 import 'controller.dart';
-import '../../common/style/color.dart';
-import '../../generated/assets.dart';
 
-class ContactPage extends GetView<ContactController> {
-  const ContactPage({super.key});
+class ContactsPage extends GetView<ContactsController> {
+  const ContactsPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: _buildAppBar(),
-      body: Center(
-        child: Text('cONTACTS'),
-      ),
+      body: const ContactList(),
     );
   }
 }
@@ -25,7 +21,7 @@ AppBar _buildAppBar() {
     automaticallyImplyLeading: false,
     backgroundColor: Colors.transparent,
     title: const Text(
-      'Contacts',
+      'Select Contact',
       style: TextStyle(
         fontWeight: FontWeight.normal,
         fontSize: 16,
@@ -40,5 +36,13 @@ AppBar _buildAppBar() {
         ),
       ),
     ),
+    actions: const [
+      IconButton(
+        onPressed: null,
+        icon: Icon(
+          Icons.search,
+        ),
+      )
+    ],
   );
 }

@@ -33,15 +33,11 @@ class SignInController extends GetxController {
           final GoogleSignInAuthentication? googleAuth =
               await googleUser?.authentication;
 
-
-
           // Create a new credential
           final credential = GoogleAuthProvider.credential(
             accessToken: googleAuth?.accessToken,
             idToken: googleAuth?.idToken,
           );
-
-
 
           final String? username = googleUser!.displayName;
           final String email = googleUser.email;
@@ -54,7 +50,6 @@ class SignInController extends GetxController {
           loginRequestEntity.type = type;
           asyncPostAllData(loginRequestEntity);
           _firebaseAuth.signInWithCredential(credential);
-
         } catch (e) {
           print('An error occurred $e');
         }
@@ -89,11 +84,12 @@ class SignInController extends GetxController {
   // after authentication
   Future<void> asyncPostAllData(LoginRequestEntity loginRequestEntity) async {
     EasyLoading.show(); // start loading
+
     var result = await UserAPI.Login(params: loginRequestEntity);
     if (result.code == 0) {
       await UserStore.to.saveProfile(result.data!);
       EasyLoading.dismiss(); // dismiss loading
-    }else{
+    } else {
       EasyLoading.dismiss(); // dismiss loading
       toastInfo(msg: 'Internet Error!');
     }
@@ -102,7 +98,3 @@ class SignInController extends GetxController {
     Get.offAllNamed(AppRoutes.message);
   }
 }
-
-
-
-

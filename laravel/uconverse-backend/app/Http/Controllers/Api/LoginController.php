@@ -10,6 +10,8 @@ use \Illuminate\Support\Facades\DB;
 
 class LoginController extends Controller{
 
+
+    // login user
     public function login(Request $request){
         // return ['data'=>"Hello this is working",'code'=>1,'msg'=>"It is reaching here"];
 
@@ -60,7 +62,19 @@ class LoginController extends Controller{
       
     }
 
+
+    // fetch all contacts except logged in user
+    public function contact(Request $request){
+        $token =  $request->user_token;
+        $res = DB::table('users').select('avatar','online','description','token')->where('token', '!=', $token)->get();
+
+        return ['code'=>0,'data'=>$res,'msg'=>'Here are all the users'];
+    }
+
     public function get_profile(Request $request){
 
     }
+
+
+    
 }

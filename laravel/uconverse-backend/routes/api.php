@@ -24,6 +24,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::group(['namespace'=>'Api'],function(){
     Route::any('/login','LoginController@login');
+    Route::any('/contacts','ContactController@contact')->middleware('CheckUser');
     Route::any('/get_profile','LoginController@get_profile');
 });
 

@@ -1,4 +1,4 @@
-library contact;
+library contacts;
 
 export './bindings.dart';
 export './controller.dart';

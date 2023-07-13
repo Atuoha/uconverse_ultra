@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:uconverse_ultra/common/middlewares/middlewares.dart';
 import 'package:get/get.dart';
-import '../../pages/contact/bindings.dart';
-import '../../pages/contact/view.dart';
 import '../../pages/frames/authentication/sign_in/index.dart';
 import '../../pages/frames/welcome/index.dart';
 import '../../pages/frames/splash/index.dart';
 import '../../pages/message/index.dart';
 import '../../pages/profile/index.dart';
+import '../../pages/contacts/index.dart';
 import 'routes.dart';
 
 class AppPages {
@@ -55,12 +54,7 @@ class AppPages {
 
  */
 
-    // contact page
-    GetPage(
-      name: AppRoutes.contact,
-      page: () => const ContactPage(),
-      binding: ContactBinding(),
-    ),
+
 
     // message screen
     GetPage(
@@ -72,10 +66,20 @@ class AppPages {
       ],
     ),
 
+
+    // contact page
     GetPage(
-        name: AppRoutes.profile,
-        page: () => const ProfilePage(),
-        binding: ProfileBinding(),),
+      name: AppRoutes.contact,
+      page: () => const ContactsPage(),
+      binding: ContactsBinding(),
+    ),
+
+    // profile page
+    GetPage(
+      name: AppRoutes.profile,
+      page: () => const ProfilePage(),
+      binding: ProfileBinding(),
+    ),
 
     /*
     GetPage(name: AppRoutes.chat, page: () => ChatPage(), binding: ChatBinding()),

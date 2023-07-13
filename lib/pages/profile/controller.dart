@@ -2,7 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import '../../common/store/user.dart';
-import '../../common/utils/http.dart';
 import 'index.dart';
 
 class ProfileController extends GetxController {
@@ -10,7 +9,6 @@ class ProfileController extends GetxController {
 
   final state = ProfileState();
   final _firebaseAuth = FirebaseAuth.instance;
-
 
 
 

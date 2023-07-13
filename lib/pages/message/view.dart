@@ -66,7 +66,7 @@ class MessagePage extends GetView<MessageController> {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         backgroundColor: AppColor.accentColorLite,
-        onPressed: controller.navigateToContacts,
+        onPressed: ()=>controller.navigateToContacts(),
         child: Padding(
           padding: const EdgeInsets.all(5.0),
           child: Image.asset(Assets.iconsContact),

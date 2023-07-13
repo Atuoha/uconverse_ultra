@@ -1,4 +1,3 @@
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -8,7 +7,6 @@ import 'package:uconverse_ultra/common/routes/pages.dart';
 import 'package:uconverse_ultra/common/style/theme.dart';
 
 import 'common/style/color.dart';
-import 'firebase_options.dart';
 import 'global_config/global.dart';
 
 Future<void> main() async {
@@ -26,6 +24,7 @@ class UconverseApp extends StatelessWidget {
       SystemUiOverlayStyle.dark.copyWith(
         statusBarColor: Colors.transparent,
         systemNavigationBarColor: AppColor.primaryColorLite,
+        statusBarIconBrightness: Brightness.dark,
       ),
     );
 
