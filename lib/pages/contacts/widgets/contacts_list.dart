@@ -20,7 +20,10 @@ class ContactList extends GetView<ContactsController> {
             width: 45.w,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              image: DecorationImage(image: imageProvider),
+              image: DecorationImage(
+                image: imageProvider,
+                fit: BoxFit.cover,
+              ),
             ),
           ),
           placeholder: (context, url) => Container(
@@ -52,8 +55,8 @@ class ContactList extends GetView<ContactsController> {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(()=>
-       CustomScrollView(
+    return Obx(
+      () => CustomScrollView(
         slivers: [
           SliverPadding(
             padding: EdgeInsets.symmetric(
