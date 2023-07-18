@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:uconverse_ultra/common/apis/apis.dart';
 import 'package:uconverse_ultra/common/entities/contact.dart';
 import '../../common/entities/msg.dart';
+import '../../common/routes/names.dart';
 import '../../common/store/user.dart';
 import 'index.dart';
 
@@ -42,6 +43,8 @@ class ContactsController extends GetxController {
         .where("to_token", isEqualTo: contactItem.token)
         .get();
 
+    print('....from_messages.....${fromMessages.docs.isEmpty}');
+
     var toMessages = await db
         .collection("messages")
         .withConverter(
@@ -52,12 +55,15 @@ class ContactsController extends GetxController {
         .where("to_token", isEqualTo: token)
         .get();
 
+    print('....to_messages.....${toMessages.docs.isEmpty}');
+
     if (fromMessages.docs.isEmpty && toMessages.docs.isEmpty) {
       var profile = UserStore.to.profile;
+      print(profile.name);
       var msgData = Msg(
         from_token: profile.token,
-        to_token: contactItem.token,
         from_name: profile.name,
+        to_token: contactItem.token,
         to_name: contactItem.name,
         from_avatar: profile.avatar,
         to_avatar: contactItem.avatar,
@@ -77,15 +83,19 @@ class ContactsController extends GetxController {
           .add(msgData);
 
       Get.offAllNamed(
-        '/chats',
+        AppRoutes.chat,
         parameters: {
-          "doc_id":docId.id,
-          "to_avatar":contactItem.avatar??"",
-          "to_name":contactItem.name??"",
-          "to_online":contactItem.online.toString()??"",
-
+          "doc_id": docId.id,
+          "to_avatar": contactItem.avatar ?? "",
+          "to_name": contactItem.name ?? "",
+          "to_online": contactItem.online.toString(),
+          "to_token": contactItem.token ?? "",
         },
       );
+
+      print('... user message created');
+    } else {
+      print('... user is an old user');
     }
   }
 

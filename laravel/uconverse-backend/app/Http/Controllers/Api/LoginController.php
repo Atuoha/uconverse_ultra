@@ -37,7 +37,7 @@ class LoginController extends Controller{
             $map['type'] = $validated['type'];
             $map['name'] = $validated['name'];
 
-            $result = DB::table('users')->select('avatar','type','description','token','access_token','online')->where($map)->first();
+            $result = DB::table('users')->select('avatar','type','description','name','token','access_token','online')->where($map)->first();
 
             if(empty($result)){
                 $validated['token'] = md5(uniqid().rand(100000,99999));
@@ -46,7 +46,7 @@ class LoginController extends Controller{
                 $validated['expire_date'] = Carbon::now()->addDays(30);
                 $user_id = DB::table('users')->insertGetId($validated);
 
-                $user_result =  DB::table('users')->select('avatar','type','description','token','access_token','online')->where('id','=',$user_id)->first();
+                $user_result =  DB::table('users')->select('avatar','type','name','description','token','access_token','online')->where('id','=',$user_id)->first();
 
                 return ['code'=>0,'data'=>$user_result,'msg'=>'User has been created'];
             }else{

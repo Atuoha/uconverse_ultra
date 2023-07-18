@@ -31,13 +31,13 @@ class MessagePage extends GetView<MessageController> {
                     width: 50.w,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      image: controller.state.userDetails.value.avatar == null
+                      image: controller.state.userDetails.avatar == null
                           ? const DecorationImage(
                               image: AssetImage(Assets.imagesDefault),
                             )
                           : DecorationImage(
                               image: NetworkImage(
-                                controller.state.userDetails.value.avatar!,
+                                controller.state.userDetails.avatar!,
                               ),
                             ),
                     ),

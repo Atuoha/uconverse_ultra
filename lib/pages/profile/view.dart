@@ -34,7 +34,7 @@ class ProfilePage extends GetView<ProfileController> {
             _buildProfilePhoto(),
             const SizedBox(height: 10),
             Text(
-              controller.state.userDetails.value.name ?? 'Unknown Name',
+              controller.state.userDetails.name ?? 'Unknown Name',
               style: TextStyle(
                 color: AppColor.primaryText,
                 fontSize: 16.sp,
@@ -104,13 +104,13 @@ class ProfilePage extends GetView<ProfileController> {
           width: 120.w,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
-            image: controller.state.userDetails.value.avatar == null
+            image: controller.state.userDetails.avatar == null
                 ? const DecorationImage(
                     image: AssetImage(Assets.imagesDefault),
                   )
                 : DecorationImage(
                     image: NetworkImage(
-                      controller.state.userDetails.value.avatar!,
+                      controller.state.userDetails.avatar!,
                     ),
                   ),
           ),

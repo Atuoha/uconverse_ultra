@@ -1,8 +1,6 @@
 import 'package:uconverse_ultra/common/entities/entities.dart';
 import 'package:uconverse_ultra/common/utils/utils.dart';
 
-
-
 class UserAPI {
   static Future<UserLoginResponseEntity> Login({
     LoginRequestEntity? params,
@@ -20,6 +18,7 @@ class UserAPI {
     );
     return UserLoginResponseEntity.fromJson(response);
   }
+
   static Future<BaseResponseEntity> UpdateProfile({
     LoginRequestEntity? params,
   }) async {
@@ -29,5 +28,4 @@ class UserAPI {
     );
     return BaseResponseEntity.fromJson(response);
   }
-
 }

@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import '../../pages/frames/authentication/sign_in/index.dart';
 import '../../pages/frames/welcome/index.dart';
 import '../../pages/frames/splash/index.dart';
+import '../../pages/message/chats/index.dart';
 import '../../pages/message/index.dart';
 import '../../pages/profile/index.dart';
 import '../../pages/contacts/index.dart';
@@ -54,8 +55,6 @@ class AppPages {
 
  */
 
-
-
     // message screen
     GetPage(
       name: AppRoutes.message,
@@ -65,7 +64,6 @@ class AppPages {
         RouteAuthMiddleware(priority: 1),
       ],
     ),
-
 
     // contact page
     GetPage(
@@ -81,8 +79,13 @@ class AppPages {
       binding: ProfileBinding(),
     ),
 
+    GetPage(
+      name: AppRoutes.chat,
+      page: () => ChatPage(),
+      binding: ChatBinding(),
+    ),
+
     /*
-    GetPage(name: AppRoutes.chat, page: () => ChatPage(), binding: ChatBinding()),
 
     GetPage(name: AppRoutes.photoImgView, page: () => PhotoImgViewPage(), binding: PhotoImgViewBinding()),
     GetPage(name: AppRoutes.voiceCall, page: () => VoiceCallViewPage(), binding: VoiceCallViewBinding()),
