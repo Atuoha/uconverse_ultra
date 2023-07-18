@@ -49,8 +49,8 @@ class MessagePage extends GetView<MessageController> {
                   child: Container(
                     width: 10.w,
                     height: 10.h,
-                    decoration: const BoxDecoration(
-                      color: AppColor.activeColor,
+                    decoration:  BoxDecoration(
+                      color: controller.state.userDetails.online == 1 ? AppColor.activeColor: AppColor.secondaryText,
                       shape: BoxShape.circle,
                     ),
                   ),

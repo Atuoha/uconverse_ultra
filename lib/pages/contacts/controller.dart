@@ -59,7 +59,6 @@ class ContactsController extends GetxController {
 
     if (fromMessages.docs.isEmpty && toMessages.docs.isEmpty) {
       var profile = UserStore.to.profile;
-      print(profile.name);
       var msgData = Msg(
         from_token: profile.token,
         from_name: profile.name,
@@ -82,7 +81,7 @@ class ContactsController extends GetxController {
           )
           .add(msgData);
 
-      Get.offAllNamed(
+      Get.toNamed(
         AppRoutes.chat,
         parameters: {
           "doc_id": docId.id,
@@ -92,10 +91,32 @@ class ContactsController extends GetxController {
           "to_token": contactItem.token ?? "",
         },
       );
-
-      print('... user message created');
     } else {
-      print('... user is an old user');
+      if (fromMessages.docs.first.id.isNotEmpty) {
+        Get.toNamed(
+          AppRoutes.chat,
+          parameters: {
+            "doc_id": fromMessages.docs.first.id,
+            "to_avatar": contactItem.avatar ?? "",
+            "to_name": contactItem.name ?? "",
+            "to_online": contactItem.online.toString(),
+            "to_token": contactItem.token ?? "",
+          },
+        );
+      }
+
+      if (toMessages.docs.first.id.isNotEmpty) {
+        Get.toNamed(
+          AppRoutes.chat,
+          parameters: {
+            "doc_id": toMessages.docs.first.id,
+            "to_avatar": contactItem.avatar ?? "",
+            "to_name": contactItem.name ?? "",
+            "to_online": contactItem.online.toString(),
+            "to_token": contactItem.token ?? "",
+          },
+        );
+      }
     }
   }
 

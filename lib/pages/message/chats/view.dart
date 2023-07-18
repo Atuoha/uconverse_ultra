@@ -12,11 +12,22 @@ class ChatPage extends GetView<ChatController> {
   // build app bar
   AppBar _buildApp() {
     return AppBar(
+      leading: Builder(
+        builder: (context) => GestureDetector(
+          onTap: () => Navigator.of(context).pop(),
+          child: const Icon(
+            Icons.chevron_left,
+            color: Colors.grey,
+          ),
+        ),
+      ),
       title: Obx(
         () => Text(
           controller.state.toName.value,
           style: const TextStyle(
             color: Colors.white,
+            fontFamily: "Avenir",
+            fontWeight: FontWeight.bold,
           ),
         ),
       ),
@@ -66,8 +77,10 @@ class ChatPage extends GetView<ChatController> {
               child: Container(
                 width: 10.w,
                 height: 10.h,
-                decoration: const BoxDecoration(
-                  color: AppColor.activeColor,
+                decoration: BoxDecoration(
+                  color: controller.state.toOnline.value == "1"
+                      ? AppColor.activeColor
+                      : AppColor.secondaryText,
                   shape: BoxShape.circle,
                 ),
               ),
@@ -83,8 +96,74 @@ class ChatPage extends GetView<ChatController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: _buildApp(),
-      body: const Center(
-        child: Text('Chat Screen'),
+      body: SafeArea(
+        child: Stack(
+          children: [
+            Positioned(
+              bottom: 5,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    GestureDetector(
+                      onTap: null,
+                      child: Container(
+                        height: 45.h,
+                        width: 45.w,
+                        decoration:  BoxDecoration(
+                          color: AppColor.primaryColorLite,
+                          shape: BoxShape.circle,
+                        ),
+                        child: const Center(
+                          child: Icon(
+                            Icons.add,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width: 10),
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 10,
+                      ),
+                      width: 295.w,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        border: Border.all(
+                          color: Colors.grey.withOpacity(0.5),
+                        ),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          SizedBox(
+                            width: 228.w,
+                            child: const TextField(
+                              autofocus: true,
+                              decoration: InputDecoration(
+                                hintText: "Type a message",
+                                enabledBorder: OutlineInputBorder(
+                                    borderSide: BorderSide.none),
+                                focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide.none),
+                              ),
+                            ),
+                          ),
+                          Image.asset(
+                            Assets.iconsSend,
+                            width: 40.w,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
