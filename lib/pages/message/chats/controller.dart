@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import '../../../common/routes/names.dart';
 import 'index.dart';
 
 class ChatController extends GetxController {
@@ -45,6 +46,12 @@ class ChatController extends GetxController {
   }
 
   void phoneCallHandler() {
-    print('phoneCallHandler');
+    Get.toNamed(
+      AppRoutes.voiceCall,
+      parameters: {
+        'toName': state.toName.value,
+        'toAvatar': state.toAvatar.value,
+      },
+    );
   }
 }

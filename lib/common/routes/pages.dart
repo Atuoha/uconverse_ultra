@@ -5,6 +5,7 @@ import '../../pages/frames/authentication/sign_in/index.dart';
 import '../../pages/frames/welcome/index.dart';
 import '../../pages/frames/splash/index.dart';
 import '../../pages/message/chats/index.dart';
+import '../../pages/message/chats/voice_call/index.dart';
 import '../../pages/message/index.dart';
 import '../../pages/profile/index.dart';
 import '../../pages/contacts/index.dart';
@@ -85,10 +86,12 @@ class AppPages {
       binding: ChatBinding(),
     ),
 
+    GetPage(name: AppRoutes.voiceCall, page: () => VoiceCallPage(), binding: VoiceCallBinding()),
+
+
     /*
 
     GetPage(name: AppRoutes.photoImgView, page: () => PhotoImgViewPage(), binding: PhotoImgViewBinding()),
-    GetPage(name: AppRoutes.voiceCall, page: () => VoiceCallViewPage(), binding: VoiceCallViewBinding()),
     GetPage(name: AppRoutes.videoCall, page: () => VideoCallPage(), binding: VideoCallBinding()),
 
 
