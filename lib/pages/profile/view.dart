@@ -58,13 +58,12 @@ class ProfilePage extends GetView<ProfileController> {
   AppBar _buildAppBar() {
     return AppBar(
       automaticallyImplyLeading: false,
-      backgroundColor: Colors.transparent,
       leading: Builder(
         builder: (context) => GestureDetector(
           onTap: () => Navigator.of(context).pop(),
           child: const Icon(
             Icons.chevron_left,
-            color: Colors.grey,
+            color: Colors.white,
           ),
         ),
       ),
@@ -75,7 +74,7 @@ class ProfilePage extends GetView<ProfileController> {
             const Text(
               'Status',
               style: TextStyle(
-                color: AppColor.primaryText,
+                color: Colors.white,
                 fontSize: 15,
               ),
             ),

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../../../common/entities/contact.dart';
+import '../../../common/style/color.dart';
 import '../../../generated/assets.dart';
 import '../controller.dart';
 
@@ -56,24 +57,42 @@ class ContactList extends GetView<ContactsController> {
   @override
   Widget build(BuildContext context) {
     return Obx(
-      () => CustomScrollView(
-        slivers: [
-          SliverPadding(
-            padding: EdgeInsets.symmetric(
-              vertical: 0.w,
-              horizontal: 0.w,
-            ),
-            sliver: SliverList(
-              delegate: SliverChildBuilderDelegate(
-                (context, index) {
-                  var contactItem = controller.state.contactList[index];
-                  return _buildContactItem(contactItem);
-                  print(contactItem.name);
-                },
-                childCount: controller.state.contactList.length,
+      () => Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(top: 18.0, left: 18),
+            child: Text(
+              'All Contacts',
+              style: TextStyle(
+                color: AppColor.secondaryText,
+                fontWeight: FontWeight.w500,
+                fontSize: 18.sp,
               ),
             ),
-          )
+          ),
+          const SizedBox(height: 15),
+          Expanded(
+            child: CustomScrollView(
+              slivers: [
+                SliverPadding(
+                  padding: EdgeInsets.symmetric(
+                    vertical: 0.w,
+                    horizontal: 0.w,
+                  ),
+                  sliver: SliverList(
+                    delegate: SliverChildBuilderDelegate(
+                      (context, index) {
+                        var contactItem = controller.state.contactList[index];
+                        return _buildContactItem(contactItem);
+                      },
+                      childCount: controller.state.contactList.length,
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ),
         ],
       ),
     );

@@ -9,40 +9,50 @@ class ContactsPage extends GetView<ContactsController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: _buildAppBar(),
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        title: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text(
+              'Select Contact',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 18,
+                color: Colors.white,
+              ),
+            ),
+            const SizedBox(height: 5),
+            Obx(
+              () => Text(
+                '${controller.state.contactList.length} contacts',
+                style: const TextStyle(
+                  fontWeight: FontWeight.normal,
+                  fontSize: 16,
+                  color: Colors.white,
+                ),
+              ),
+            )
+          ],
+        ),
+        leading: Builder(
+          builder: (context) => GestureDetector(
+            onTap: () => Navigator.of(context).pop(),
+            child: const Icon(
+              Icons.chevron_left,
+              color: Colors.white,
+            ),
+          ),
+        ),
+        actions: const [
+          IconButton(
+            onPressed: null,
+            icon: Icon(Icons.search, color: Colors.white),
+          )
+        ],
+      ),
       body: const ContactList(),
     );
   }
-}
-
-// appbar
-AppBar _buildAppBar() {
-  return AppBar(
-    automaticallyImplyLeading: false,
-    backgroundColor: Colors.transparent,
-    title: const Text(
-      'Select Contact',
-      style: TextStyle(
-        fontWeight: FontWeight.normal,
-        fontSize: 16,
-      ),
-    ),
-    leading: Builder(
-      builder: (context) => GestureDetector(
-        onTap: () => Navigator.of(context).pop(),
-        child: const Icon(
-          Icons.chevron_left,
-          color: Colors.grey,
-        ),
-      ),
-    ),
-    actions: const [
-      IconButton(
-        onPressed: null,
-        icon: Icon(
-          Icons.search,
-        ),
-      )
-    ],
-  );
 }

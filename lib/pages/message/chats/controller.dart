@@ -19,9 +19,32 @@ class ChatController extends GetxController {
     state.toToken.value = parameters['to_token'] ?? "";
   }
 
-
-  void toggleAttachmentBtnExpansion(){
+  // toggle attachment widget
+  void toggleAttachmentBtnExpansion() {
     state.isAttachBtnExpanded.value = !state.isAttachBtnExpanded.value;
   }
 
+  void fileHandler() {
+    print('fileHandler');
+  }
+
+  void locationHandler() {
+    print('locationHandler');
+  }
+
+  void videoCallHandler() {
+    print('videoCallHandler');
+  }
+
+  void voiceRecordHandler() {
+    print('voiceRecordHandler');
+  }
+
+  void photoGalleryHandler() {
+    print('photoGalleryHandler');
+  }
+
+  void phoneCallHandler() {
+    print('phoneCallHandler');
+  }
 }
