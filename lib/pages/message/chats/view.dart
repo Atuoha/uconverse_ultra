@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'widgets/attach_widget.dart';
 import '../../../common/style/color.dart';
 import '../../../generated/assets.dart';
 import 'controller.dart';
@@ -107,17 +108,19 @@ class ChatPage extends GetView<ChatController> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     GestureDetector(
-                      onTap: null,
+                      onTap: () => controller.toggleAttachmentBtnExpansion(),
                       child: Container(
                         height: 45.h,
                         width: 45.w,
-                        decoration:  BoxDecoration(
+                        decoration: BoxDecoration(
                           color: AppColor.primaryColorLite,
                           shape: BoxShape.circle,
                         ),
-                        child: const Center(
+                        child: Center(
                           child: Icon(
-                            Icons.add,
+                            controller.state.isAttachBtnExpanded
+                                ? Icons.cancel
+                                : Icons.add,
                             color: Colors.white,
                           ),
                         ),
@@ -135,33 +138,105 @@ class ChatPage extends GetView<ChatController> {
                           color: Colors.grey.withOpacity(0.5),
                         ),
                       ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          SizedBox(
-                            width: 228.w,
-                            child: const TextField(
-                              autofocus: true,
-                              decoration: InputDecoration(
-                                hintText: "Type a message",
-                                enabledBorder: OutlineInputBorder(
-                                    borderSide: BorderSide.none),
-                                focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide.none),
-                              ),
+                      child: TextField(
+                        autofocus: true,
+                        keyboardType: TextInputType.multiline,
+                        textInputAction: TextInputAction.done,
+                        maxLines: null,
+                        decoration: InputDecoration(
+                          suffixIcon: GestureDetector(
+                            onTap: () => print('hello'),
+                            child: Image.asset(
+                              Assets.iconsSend,
+                              width: 40.w,
                             ),
                           ),
-                          Image.asset(
-                            Assets.iconsSend,
-                            width: 40.w,
+                          hintText: "Type a message",
+                          enabledBorder: const OutlineInputBorder(
+                            borderSide: BorderSide.none,
                           ),
-                        ],
+                          border: const OutlineInputBorder(
+                            borderSide: BorderSide.none,
+                          ),
+                          focusedBorder: const OutlineInputBorder(
+                            borderSide: BorderSide.none,
+                          ),
+                          disabledBorder: const OutlineInputBorder(
+                            borderSide: BorderSide.none,
+                          ),
+                        ),
                       ),
                     ),
                   ],
                 ),
               ),
-            )
+            ),
+            Positioned(
+              left: 30,
+              bottom: 70,
+              height: 200.w,
+              width: 300.w,
+              child: AnimatedOpacity(
+                duration: const Duration(milliseconds: 100),
+                opacity: controller.state.isAttachBtnExpanded ? 1 : 1,
+                child: Container(
+                  height: 200.w,
+                  width: 300.w,
+                  padding: const EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: AppColor.primaryColorLite,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.shade200,
+                        spreadRadius: 2,
+                        blurRadius: 5,
+                        offset: const Offset(0, 3),
+                      ),
+                    ],
+                  ),
+                  child: GridView.count(
+                    crossAxisCount: 3,
+                    crossAxisSpacing: 2,
+                    mainAxisSpacing: 2,
+                    shrinkWrap: true,
+                    padding: const EdgeInsets.only(top: 10),
+                    children: [
+                      AttachWidget(
+                        image: Assets.iconsPhoto,
+                        title: 'Photo Gallery',
+                        function: () {},
+                      ),
+                      AttachWidget(
+                        image: Assets.iconsVoice,
+                        title: 'Voice Record',
+                        function: () {},
+                      ),
+                      AttachWidget(
+                        image: Assets.iconsFile,
+                        title: 'File Upload',
+                        function: () {},
+                      ),
+                      AttachWidget(
+                        image: Assets.iconsVideo,
+                        title: 'Video Upload',
+                        function: () {},
+                      ),
+                      AttachWidget(
+                        image: Assets.iconsCall,
+                        title: 'Contacts',
+                        function: () {},
+                      ),
+                      AttachWidget(
+                        image: Assets.iconsLocation,
+                        title: 'Location',
+                        function: () {},
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
       ),

@@ -34,6 +34,7 @@ class Assets {
   static const String iconsFacebook = 'assets/icons/facebook.png';
   static const String iconsFile = 'assets/icons/file.png';
   static const String iconsGoogle = 'assets/icons/google.png';
+  static const String iconsLocation = 'assets/icons/location.png';
   static const String iconsPhoto = 'assets/icons/photo.png';
   static const String iconsSearch = 'assets/icons/search.png';
   static const String iconsSend = 'assets/icons/send.png';

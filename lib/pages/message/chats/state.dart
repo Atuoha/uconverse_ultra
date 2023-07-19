@@ -8,4 +8,6 @@ class ChatState {
   var toAvatar = "".obs;
   var toToken = "".obs;
   var toOnline = "".obs;
+
+  var isAttachBtnExpanded = false;
 }
