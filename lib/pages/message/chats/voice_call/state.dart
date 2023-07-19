@@ -5,6 +5,7 @@ class VoiceCallState {
   var toAvatar = "".obs;
 
   RxBool isJoined = false.obs;
-  RxBool isMicrophoneOn = false.obs;
-  RxBool isSpeakerOn = false.obs;
+  RxBool isMicrophoneOn = true.obs;
+  RxBool isSpeakerOn = true.obs;
+  RxString callTime = "calling".obs;
 }

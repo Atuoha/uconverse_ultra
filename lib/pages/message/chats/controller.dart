@@ -46,6 +46,7 @@ class ChatController extends GetxController {
   }
 
   void phoneCallHandler() {
+    toggleAttachmentBtnExpansion();
     Get.toNamed(
       AppRoutes.voiceCall,
       parameters: {

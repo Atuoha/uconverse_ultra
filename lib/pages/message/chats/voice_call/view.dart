@@ -65,7 +65,7 @@ class VoiceCallPage extends GetView<VoiceCallController> {
                   ),
                   const SizedBox(height: 10),
                   Text(
-                    controller.state.isJoined.value ? '0:00' : 'Calling',
+                    controller.state.callTime.value,
                     style: const TextStyle(
                       color: Colors.white,
                     ),
@@ -84,22 +84,22 @@ class VoiceCallPage extends GetView<VoiceCallController> {
                             CallActionWidget(
                               title: 'Speaker',
                               bgColor: controller.state.isSpeakerOn.value
-                                  ? AppColor.primaryColorLite
-                                  : Colors.white,
+                                  ? Colors.white
+                                  : AppColor.primaryColorLite,
                               function: controller.toggleSpeaker,
                               img: controller.state.isSpeakerOn.value
-                                  ? Assets.iconsAoTrumpet
-                                  : Assets.iconsBoTrumpet,
+                                  ? Assets.iconsBoTrumpet
+                                  : Assets.iconsAoTrumpet,
                             ),
                             CallActionWidget(
                               title: 'Microphone',
                               bgColor: controller.state.isMicrophoneOn.value
-                                  ? AppColor.primaryColorLite
-                                  : Colors.white,
+                                  ? Colors.white
+                                  : AppColor.primaryColorLite,
                               function: controller.toggleMicrophone,
                               img: controller.state.isMicrophoneOn.value
-                                  ? Assets.iconsAMicrophone
-                                  : Assets.iconsBMicrophone,
+                                  ? Assets.iconsBMicrophone
+                                  : Assets.iconsAMicrophone,
                             ),
                             CallActionWidget(
                               title: 'Disconnect',
