@@ -21,8 +21,7 @@ class ChatController extends GetxController {
 
 
   void toggleAttachmentBtnExpansion(){
-    state.isAttachBtnExpanded = !state.isAttachBtnExpanded;
-    print(state.isAttachBtnExpanded);
+    state.isAttachBtnExpanded.value = !state.isAttachBtnExpanded.value;
   }
 
 }

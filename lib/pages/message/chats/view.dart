@@ -98,146 +98,148 @@ class ChatPage extends GetView<ChatController> {
     return Scaffold(
       appBar: _buildApp(),
       body: SafeArea(
-        child: Stack(
-          children: [
-            Positioned(
-              bottom: 5,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    GestureDetector(
-                      onTap: () => controller.toggleAttachmentBtnExpansion(),
-                      child: Container(
-                        height: 45.h,
-                        width: 45.w,
-                        decoration: BoxDecoration(
-                          color: AppColor.primaryColorLite,
-                          shape: BoxShape.circle,
-                        ),
-                        child: Center(
-                          child: Icon(
-                            controller.state.isAttachBtnExpanded
-                                ? Icons.cancel
-                                : Icons.add,
-                            color: Colors.white,
+        child: Obx(
+          () => Stack(
+            children: [
+              Positioned(
+                bottom: 5,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      GestureDetector(
+                        onTap: () => controller.toggleAttachmentBtnExpansion(),
+                        child: Container(
+                          height: 45.h,
+                          width: 45.w,
+                          decoration: BoxDecoration(
+                            color: AppColor.primaryColorLite,
+                            shape: BoxShape.circle,
                           ),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(width: 10),
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 10,
-                      ),
-                      width: 295.w,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        border: Border.all(
-                          color: Colors.grey.withOpacity(0.5),
-                        ),
-                      ),
-                      child: TextField(
-                        autofocus: true,
-                        keyboardType: TextInputType.multiline,
-                        textInputAction: TextInputAction.done,
-                        maxLines: null,
-                        decoration: InputDecoration(
-                          suffixIcon: GestureDetector(
-                            onTap: () => print('hello'),
-                            child: Image.asset(
-                              Assets.iconsSend,
-                              width: 40.w,
+                          child: Center(
+                            child: Icon(
+                              controller.state.isAttachBtnExpanded.value
+                                  ? Icons.cancel
+                                  : Icons.add,
+                              color: Colors.white,
                             ),
                           ),
-                          hintText: "Type a message",
-                          enabledBorder: const OutlineInputBorder(
-                            borderSide: BorderSide.none,
+                        ),
+                      ),
+                      const SizedBox(width: 10),
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 10,
+                        ),
+                        width: 295.w,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          border: Border.all(
+                            color: Colors.grey.withOpacity(0.5),
                           ),
-                          border: const OutlineInputBorder(
-                            borderSide: BorderSide.none,
-                          ),
-                          focusedBorder: const OutlineInputBorder(
-                            borderSide: BorderSide.none,
-                          ),
-                          disabledBorder: const OutlineInputBorder(
-                            borderSide: BorderSide.none,
+                        ),
+                        child: TextField(
+                          autofocus: true,
+                          keyboardType: TextInputType.multiline,
+                          textInputAction: TextInputAction.done,
+                          maxLines: null,
+                          decoration: InputDecoration(
+                            suffixIcon: GestureDetector(
+                              onTap: () => print('hello'),
+                              child: Image.asset(
+                                Assets.iconsSend,
+                                width: 40.w,
+                              ),
+                            ),
+                            hintText: "Type a message",
+                            enabledBorder: const OutlineInputBorder(
+                              borderSide: BorderSide.none,
+                            ),
+                            border: const OutlineInputBorder(
+                              borderSide: BorderSide.none,
+                            ),
+                            focusedBorder: const OutlineInputBorder(
+                              borderSide: BorderSide.none,
+                            ),
+                            disabledBorder: const OutlineInputBorder(
+                              borderSide: BorderSide.none,
+                            ),
                           ),
                         ),
                       ),
+                    ],
+                  ),
+                ),
+              ),
+              Positioned(
+                left: 30,
+                bottom: 70,
+                height: 200.w,
+                width: 300.w,
+                child: AnimatedOpacity(
+                  duration: const Duration(milliseconds: 100),
+                  opacity: controller.state.isAttachBtnExpanded.value ? 1 : 0,
+                  child: Container(
+                    height: 200.w,
+                    width: 300.w,
+                    padding: const EdgeInsets.all(8),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: AppColor.primaryColorLite,
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.shade200,
+                          spreadRadius: 2,
+                          blurRadius: 5,
+                          offset: const Offset(0, 3),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-              ),
-            ),
-            Positioned(
-              left: 30,
-              bottom: 70,
-              height: 200.w,
-              width: 300.w,
-              child: AnimatedOpacity(
-                duration: const Duration(milliseconds: 100),
-                opacity: controller.state.isAttachBtnExpanded ? 1 : 1,
-                child: Container(
-                  height: 200.w,
-                  width: 300.w,
-                  padding: const EdgeInsets.all(8),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: AppColor.primaryColorLite,
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.shade200,
-                        spreadRadius: 2,
-                        blurRadius: 5,
-                        offset: const Offset(0, 3),
-                      ),
-                    ],
-                  ),
-                  child: GridView.count(
-                    crossAxisCount: 3,
-                    crossAxisSpacing: 2,
-                    mainAxisSpacing: 2,
-                    shrinkWrap: true,
-                    padding: const EdgeInsets.only(top: 10),
-                    children: [
-                      AttachWidget(
-                        image: Assets.iconsPhoto,
-                        title: 'Photo Gallery',
-                        function: () {},
-                      ),
-                      AttachWidget(
-                        image: Assets.iconsVoice,
-                        title: 'Voice Record',
-                        function: () {},
-                      ),
-                      AttachWidget(
-                        image: Assets.iconsFile,
-                        title: 'File Upload',
-                        function: () {},
-                      ),
-                      AttachWidget(
-                        image: Assets.iconsVideo,
-                        title: 'Video Upload',
-                        function: () {},
-                      ),
-                      AttachWidget(
-                        image: Assets.iconsCall,
-                        title: 'Contacts',
-                        function: () {},
-                      ),
-                      AttachWidget(
-                        image: Assets.iconsLocation,
-                        title: 'Location',
-                        function: () {},
-                      ),
-                    ],
+                    child: GridView.count(
+                      crossAxisCount: 3,
+                      crossAxisSpacing: 2,
+                      mainAxisSpacing: 2,
+                      shrinkWrap: true,
+                      padding: const EdgeInsets.only(top: 10),
+                      children: [
+                        AttachWidget(
+                          image: Assets.iconsPhoto,
+                          title: 'Photo Gallery',
+                          function: () {},
+                        ),
+                        AttachWidget(
+                          image: Assets.iconsVoice,
+                          title: 'Voice Record',
+                          function: () {},
+                        ),
+                        AttachWidget(
+                          image: Assets.iconsFile,
+                          title: 'File Upload',
+                          function: () {},
+                        ),
+                        AttachWidget(
+                          image: Assets.iconsVideo,
+                          title: 'Video Upload',
+                          function: () {},
+                        ),
+                        AttachWidget(
+                          image: Assets.iconsCall,
+                          title: 'Contacts',
+                          function: () {},
+                        ),
+                        AttachWidget(
+                          image: Assets.iconsLocation,
+                          title: 'Location',
+                          function: () {},
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

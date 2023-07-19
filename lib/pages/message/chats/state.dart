@@ -9,5 +9,5 @@ class ChatState {
   var toToken = "".obs;
   var toOnline = "".obs;
 
-  var isAttachBtnExpanded = false;
+  RxBool isAttachBtnExpanded = false.obs;
 }
