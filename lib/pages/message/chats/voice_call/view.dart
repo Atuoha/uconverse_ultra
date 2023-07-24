@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:uconverse_ultra/pages/message/chats/voice_call/widgets/call_widgets.dart';
 import '../../../../common/style/color.dart';
 import '../../../../generated/assets.dart';
 import 'controller.dart';
@@ -81,6 +82,7 @@ class VoiceCallPage extends GetView<VoiceCallController> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
+                            // Speaker
                             CallActionWidget(
                               title: 'Speaker',
                               bgColor: controller.state.isSpeakerOn.value
@@ -89,8 +91,10 @@ class VoiceCallPage extends GetView<VoiceCallController> {
                               function: controller.toggleSpeaker,
                               img: controller.state.isSpeakerOn.value
                                   ? Assets.iconsBoTrumpet
-                                  : Assets.iconsAoTrumpet,
+                                  : Assets.iconsATrumpet,
                             ),
+
+                            // Microphone
                             CallActionWidget(
                               title: 'Microphone',
                               bgColor: controller.state.isMicrophoneOn.value
@@ -101,10 +105,16 @@ class VoiceCallPage extends GetView<VoiceCallController> {
                                   ? Assets.iconsBMicrophone
                                   : Assets.iconsAMicrophone,
                             ),
+
+                            // Disconnect
                             CallActionWidget(
-                              title: 'Disconnect',
-                              bgColor: Colors.red.withOpacity(0.7),
-                              function: () {},
+                              title: controller.state.isJoined.value
+                                  ? 'Disconnect'
+                                  : 'Connecting',
+                              bgColor: controller.state.isJoined.value
+                                  ? Colors.red.withOpacity(0.7)
+                                  : Colors.green.withOpacity(0.7),
+                              function: controller.state.isJoined.value? controller.leaveChannel:controller.joinChannel,
                               img: Assets.iconsATelephone,
                             ),
                           ],
@@ -117,63 +127,6 @@ class VoiceCallPage extends GetView<VoiceCallController> {
             ),
           ),
         ),
-      ),
-    );
-  }
-}
-
-class CallActionWidget extends StatelessWidget {
-  const CallActionWidget({
-    super.key,
-    required this.title,
-    required this.img,
-    required this.function,
-    required this.bgColor,
-  });
-
-  final String title;
-  final String img;
-  final Color bgColor;
-  final Function function;
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => function(),
-      child: Column(
-        children: [
-          Container(
-            height: 60.h,
-            width: 60.h,
-            padding: const EdgeInsets.all(8),
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: bgColor,
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.shade200,
-                  blurRadius: 5,
-                  spreadRadius: 3,
-                  offset: const Offset(0, 5),
-                )
-              ],
-            ),
-            child: Padding(
-              padding: const EdgeInsets.all(5.0),
-              child: Image.asset(
-                img,
-                width: 25.w,
-              ),
-            ),
-          ),
-          const SizedBox(height: 10),
-          Text(
-            title,
-            style: TextStyle(
-              color: AppColor.primaryColorLite,
-            ),
-          )
-        ],
       ),
     );
   }

@@ -92,7 +92,7 @@ class ContactsController extends GetxController {
         },
       );
     } else {
-      if (fromMessages.docs.first.id.isNotEmpty) {
+      if (fromMessages.docs.isNotEmpty) {
         Get.toNamed(
           AppRoutes.chat,
           parameters: {
@@ -105,7 +105,7 @@ class ContactsController extends GetxController {
         );
       }
 
-      if (toMessages.docs.first.id.isNotEmpty) {
+      if (toMessages.docs.isNotEmpty) {
         Get.toNamed(
           AppRoutes.chat,
           parameters: {

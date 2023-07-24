@@ -52,6 +52,8 @@ class ChatController extends GetxController {
       parameters: {
         'toName': state.toName.value,
         'toAvatar': state.toAvatar.value,
+        'toToken':state.toToken.value,
+        'docId':docId,
       },
     );
   }
