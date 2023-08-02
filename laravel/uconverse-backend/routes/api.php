@@ -26,5 +26,7 @@ Route::group(['namespace'=>'Api'],function(){
     Route::any('/login','LoginController@login');
     Route::any('/contacts','ContactController@contact')->middleware('CheckUser');
     Route::any('/get_profile','LoginController@get_profile');
+    Route::any('/get_rtc_token','AccessTokenController@get_rtc_token')->middleware('CheckUser');
+    Route::any('/send_notice','SendNoticeController@send_notice')->middleware('CheckUser');
 });
 

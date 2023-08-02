@@ -5,6 +5,7 @@ class VoiceCallState {
   var toAvatar = "".obs;
   var toToken = "".obs;
   var docId = "".obs;
+  var channelId = "".obs;
 
   RxBool isJoined = false.obs;
   RxBool isMicrophoneOn = true.obs;

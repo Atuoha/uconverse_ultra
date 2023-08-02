@@ -54,6 +54,7 @@ class ChatController extends GetxController {
         'toAvatar': state.toAvatar.value,
         'toToken':state.toToken.value,
         'docId':docId,
+        'call_role':"anchor",
       },
     );
   }

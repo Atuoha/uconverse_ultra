@@ -1,18 +1,40 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:get/get.dart';
 import 'package:uconverse_ultra/common/routes/pages.dart';
 import 'package:uconverse_ultra/common/style/theme.dart';
 
 import 'common/style/color.dart';
 import 'global_config/global.dart';
+import 'common/utils/FirebaseMessagingHandler.dart';
 
 Future<void> main() async {
   await Global.init(); // global init
-
   runApp(const UconverseApp());
+
+  firebaseMessageInit().whenComplete(() => FirebaseMessagingHandler.config());
+}
+
+Future firebaseMessageInit() async {
+  FirebaseMessaging.onBackgroundMessage(
+    FirebaseMessagingHandler.firebaseMessagingBackground,
+  );
+
+  if (GetPlatform.isAndroid) {
+    FirebaseMessagingHandler.flutterLocalNotificationsPlugin
+        .resolvePlatformSpecificImplementation<
+            AndroidFlutterLocalNotificationsPlugin>()!
+        .createNotificationChannel(FirebaseMessagingHandler.channel_call);
+
+    FirebaseMessagingHandler.flutterLocalNotificationsPlugin
+        .resolvePlatformSpecificImplementation<
+            AndroidFlutterLocalNotificationsPlugin>()!
+        .createNotificationChannel(FirebaseMessagingHandler.channel_message);
+  }
 }
 
 class UconverseApp extends StatelessWidget {

@@ -1,7 +1,11 @@
+import 'dart:convert';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:crypto/crypto.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:uconverse_ultra/common/entities/chat.dart';
+import '../../../../common/apis/chat.dart';
 import '../../../../common/store/user.dart';
 import '../../../../common/values/server.dart';
 import '../../../../generated/assets.dart';
@@ -30,6 +34,7 @@ class VoiceCallController extends GetxController {
     state.toAvatar.value = params['toAvatar'] ?? "";
     state.toToken.value = params['toToken'] ?? "";
     state.docId.value = params['docId'] ?? "";
+    state.callRole.value = params['call_role'] ?? "";
   }
 
   Future<void> initAgoraEngine() async {
@@ -70,15 +75,68 @@ class VoiceCallController extends GetxController {
     );
 
     await joinChannel();
+    if (state.callRole.value == "anchor") {
+      sendNotification(callType:"voice");
+      await player.play();
+    }
+  }
+
+
+  Future<void> sendNotification({required String callType})async{
+    CallRequestEntity callRequestEntity = CallRequestEntity();
+    callRequestEntity.call_type =  callType;
+    callRequestEntity.to_token = state.toToken.value;
+    callRequestEntity.to_name = state.toName.value;
+    callRequestEntity.to_avatar = state.toAvatar.value;
+    callRequestEntity.doc_id = state.docId.value;
+
+    
+    print('.... TO_TOKEN ${state.toToken.value}');
+    var res = await ChatAPI.call_notifications(params: callRequestEntity);
+    if(res.code == 0){
+      print('notification success');
+    }else{
+      print('notification failure');
+    }
+  }
+
+  Future<String> getToken() async {
+    if (state.callRole.value == "anchor") {
+      state.channelId.value = md5
+          .convert(utf8.encode('${profileToken}_${state.toToken}'))
+          .toString();
+    } else {
+      state.channelId.value =
+          md5.convert(utf8.encode('${state.toToken}_$profileToken')).toString();
+    }
+
+    CallTokenRequestEntity callTokenRequestEntity = CallTokenRequestEntity();
+    callTokenRequestEntity.channel_name = state.channelId.value;
+    print('......channel id ${state.channelId.value}');
+    var res = await ChatAPI.call_token(params: callTokenRequestEntity);
+
+    if (res.code == 0) {
+      return res.data!;
+    }
+
+    return "";
   }
 
   Future<void> joinChannel() async {
     await Permission.microphone.request();
     EasyLoading.show();
+
+    String token = await getToken();
+
+    if (token.isEmpty) {
+      EasyLoading.dismiss();
+      Get.back();
+      return;
+    }
+
     await engine.joinChannel(
-      token:
-          "007eJxTYDjTsu3ac7WQx6rmFR4/vG9sXHn1ekHof++6ZX/NGQo35qgpMCQnmxoZmRobmJkkppqYJhsmJaYaG6caGhiaGptYpJqnqsnsS2kIZGQo9lVgYIRCEJ+ToTQ5P68stag4lYEBAHOzIgY=",
-      channelId: "uconverse",
+      token: token,
+      channelId:state.channelId.value,
       uid: 0,
       options: const ChannelMediaOptions(
         channelProfile: ChannelProfileType.channelProfileCommunication,
