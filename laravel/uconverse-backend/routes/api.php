@@ -28,5 +28,8 @@ Route::group(['namespace'=>'Api'],function(){
     Route::any('/get_profile','LoginController@get_profile');
     Route::any('/get_rtc_token','AccessTokenController@get_rtc_token')->middleware('CheckUser');
     Route::any('/send_notice','SendNoticeController@send_notice')->middleware('CheckUser');
+    Route::any('/bind_fcmtoken','SendNoticeController@bind_fcmtoken')->middleware('CheckUser');
+
+    
 });
 

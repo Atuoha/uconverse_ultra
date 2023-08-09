@@ -91,6 +91,19 @@ class SendNoticeController extends Controller {
       
     }
 
+
+
+    public function bind_fcmtoken(Request $request){
+        $token = $request->user_token;
+        $fcmtoken = $request->input('fcmtoken');
+        if(empty($fcmtoken)){
+            return ['data'=>'','code'=>-1,'msg'=>'Error getting the token'];
+        }
+        DB::table('users')->where('token','=',$token)->update(['fcmtoken'=>$fcmtoken]);
+        return ['code'=>0, 'data'=>$token, 'msg'=>'success'];
+
+    } 
+
 }
 
 ?>

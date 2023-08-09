@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:uconverse_ultra/pages/message/index.dart';
 import '../../common/entities/base.dart';
 import '../../common/routes/names.dart';
+import '../../common/apis/chat.dart';
+
 
 class MessageController extends GetxController {
   MessageController();
@@ -30,6 +32,7 @@ class MessageController extends GetxController {
       BindFcmTokenRequestEntity bindFcmTokenRequestEntity =
           BindFcmTokenRequestEntity();
       bindFcmTokenRequestEntity.fcmtoken = fcmToken;
+      await ChatAPI.bind_fcmtoken(params:bindFcmTokenRequestEntity);
     }
   }
 }

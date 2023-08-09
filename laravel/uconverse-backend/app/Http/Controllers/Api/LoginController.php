@@ -66,7 +66,7 @@ class LoginController extends Controller{
     // fetch all contacts except logged in user
     public function contact(Request $request){
         $token =  $request->user_token;
-        $res = DB::table('users').select('avatar','online','description','token')->where('token', '!=', $token)->get();
+        $res = DB::table('users')->select('avatar','online','description','token')->where('token', '!=', $token)->get();
 
         return ['code'=>0,'data'=>$res,'msg'=>'Here are all the users'];
     }
